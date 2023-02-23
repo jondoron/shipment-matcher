@@ -1,0 +1,24 @@
+{
+  "name": "jondoron/shipment-matcher",
+  "description": "Project that optimizes the assignment shipments to drivers based off of a suitability score",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jonathan Doron",
+      "email": "jonathan.doron@gmail.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "require": {
+    "symfony/console": "^6.2",
+    "webmozart/assert": "^1.11"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  }
+}
