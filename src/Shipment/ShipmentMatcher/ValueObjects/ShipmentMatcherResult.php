@@ -8,7 +8,8 @@ class ShipmentMatcherResult
         private readonly Address $address,
         private readonly Driver $driver,
         private readonly float $score
-    ) {}
+    ) {
+    }
 
     /**
      * @return Address

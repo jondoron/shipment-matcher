@@ -10,7 +10,9 @@ class Address
      * @var int[]
      */
     private array $factors;
-    public function __construct(private readonly int $id, private readonly string $address) {
+
+    public function __construct(private readonly int $id, private readonly string $address)
+    {
         $this->factors = MathUtil::calculateFactors(strlen($this->address));
     }
 

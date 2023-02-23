@@ -20,5 +20,10 @@
   },
   "require-dev": {
     "phpunit/phpunit": "^10.0"
+  },
+  "scripts": {
+    "shipment-matcher": [
+      "php console.php shipment-matcher"
+    ]
   }
 }

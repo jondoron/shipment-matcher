@@ -1,4 +1,8 @@
-200 evergreen drive
-220 E. benedict ave
-440 W. baltimore ave
-1600 pennsylvania Avenue
+evergreen drive
+E. benedict ave
+W. baltimore ave
+pennsylvania Avenue
+Big Walk Way
+North Main Street
+Queen Street
+Prince Street

@@ -56,12 +56,12 @@ class ShipmentMatcher
 
         foreach ($this->addresses as $address) {
             foreach ($address->getFactors() as $factor) {
-                if (!key_exists($factor ,$addressesIndexByFactor)) {
+                if (!key_exists($factor, $addressesIndexByFactor)) {
                     $addressesIndexByFactor[$factor] = [];
                 }
                 $addressesIndexByFactor[$factor][$address->getId()] = $address;
             }
-            if(MathUtil::isEven(strlen($address))) {
+            if (MathUtil::isEven(strlen($address))) {
                 $evenAddresses[$address->getId()] = $address;
                 continue;
             }

@@ -8,7 +8,8 @@ class DriverSuitabilityScore
         private readonly Driver $driver,
         private readonly float $score,
         private readonly ScoringMethodEnum $scoringMethod
-    ) {}
+    ) {
+    }
 
     /**
      * @return Driver

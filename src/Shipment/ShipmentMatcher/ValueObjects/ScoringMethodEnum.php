@@ -12,12 +12,11 @@ enum ScoringMethodEnum
 
     public function name(): string
     {
-        return match($this)
-        {
+        return match ($this) {
             self::ODD => 'odd',
             self::EVEN => 'even',
-            self::ODD_WITH_FACTOR => 'odd_factor',
-            self::EVEN_WITH_FACTOR => 'even_factor'
+            self::ODD_WITH_FACTOR => 'odd_with_factor',
+            self::EVEN_WITH_FACTOR => 'even_with_factor'
         };
     }
 }

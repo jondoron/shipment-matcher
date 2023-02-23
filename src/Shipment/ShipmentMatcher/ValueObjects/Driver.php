@@ -8,10 +8,10 @@ use Webmozart\Assert\Assert;
 
 class Driver
 {
-    const EVEN_MULTIPLIER = 1.5;
-    const ODD_MULTIPLIER = 1.0;
+    public const EVEN_MULTIPLIER = 1.5;
+    public const ODD_MULTIPLIER = 1.0;
 
-    const FACTOR_MULTIPLIER = 1.5;
+    public const FACTOR_MULTIPLIER = 1.5;
 
     private array $factors = [];
 
@@ -21,7 +21,8 @@ class Driver
      */
     private array $driverSuitabilityScores = [];
 
-    public function __construct(private readonly int $id, private readonly string $driver) {
+    public function __construct(private readonly int $id, private readonly string $driver)
+    {
         Assert::notWhitespaceOnly($driver);
 
         $this->factors = MathUtil::calculateFactors(strlen($driver));
