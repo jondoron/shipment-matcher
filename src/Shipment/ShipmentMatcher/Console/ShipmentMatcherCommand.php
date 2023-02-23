@@ -73,7 +73,7 @@ class ShipmentMatcherCommand extends Command
         $results = $shipmentMatcher->matchDriversToAddresses();
         foreach ($results as $result) {
             $output->writeln(sprintf(
-                'Driver: %s -- Address: -- %s', $result->getDriver(), $result->getAddress()
+                'Driver: %s -- Address: -- %s -- Score: %f', $result->getDriver(), $result->getAddress(), $result->getScore()
             ));
         }
         return Command::SUCCESS;

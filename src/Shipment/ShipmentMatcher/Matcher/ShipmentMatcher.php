@@ -3,7 +3,7 @@
 namespace Shipment\ShipmentMatcher\Matcher;
 
 use Shipment\ShipmentMatcher\ValueObjects\Address;
-use Shipment\ShipmentMatcher\ValueObjects\AddressDriverPair;
+use Shipment\ShipmentMatcher\ValueObjects\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\ValueObjects\Driver;
 use Shipment\ShipmentMatcher\ValueObjects\DriverSuitabilityScore;
 use Shipment\ShipmentMatcher\ValueObjects\ScoringMethodEnum;
@@ -147,7 +147,7 @@ class ShipmentMatcher
                 continue;
             }
             $driver = $currentSuitabilityScore->getDriver();
-            $results[] = new AddressDriverPair($matchedAddress, $driver);
+            $results[] = new ShipmentMatcherResult($matchedAddress, $driver, $currentSuitabilityScore->getScore());
             $matchedAddresses[$matchedAddress->getId()] = $matchedAddress;
             $matchedDrivers[$driver->getId()] = $driver;
         }
