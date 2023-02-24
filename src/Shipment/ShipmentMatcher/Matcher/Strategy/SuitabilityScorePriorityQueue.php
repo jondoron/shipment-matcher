@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Matcher;
+namespace Shipment\ShipmentMatcher\Matcher\Strategy;
 
 use SplPriorityQueue;
 
