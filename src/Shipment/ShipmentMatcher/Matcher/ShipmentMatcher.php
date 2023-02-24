@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Matcher;
 
-use Shipment\ShipmentMatcher\ValueObjects\Address;
+use Shipment\ShipmentMatcher\ValueObjects\ShipmentDestination;
 use Shipment\ShipmentMatcher\ValueObjects\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\ValueObjects\Driver;
 use Shipment\ShipmentMatcher\ValueObjects\DriverSuitabilityScore;
@@ -20,7 +20,7 @@ class ShipmentMatcher
 
     /**
      * @param Driver[] $drivers
-     * @param Address[] $addresses
+     * @param ShipmentDestination[] $addresses
      */
     public function __construct(
         private readonly array $drivers,

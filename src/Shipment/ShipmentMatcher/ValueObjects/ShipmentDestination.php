@@ -4,7 +4,7 @@ namespace Shipment\ShipmentMatcher\ValueObjects;
 
 use Util\MathUtil;
 
-class Address
+class ShipmentDestination
 {
     /**
      * @var int[]

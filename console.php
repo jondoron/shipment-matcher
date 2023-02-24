@@ -2,7 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use Shipment\ShipmentMatcher\Console\ShipmentMatcherCommand;
+use Shipment\ShipmentMatcher\CLI\ShipmentMatcherCommand;
 use Symfony\Component\Console\Application;
 
 $application =  new Application();

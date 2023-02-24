@@ -5,16 +5,16 @@ namespace Shipment\ShipmentMatcher\ValueObjects;
 class ShipmentMatcherResult
 {
     public function __construct(
-        private readonly Address $address,
-        private readonly Driver $driver,
-        private readonly float $score
+        private readonly ShipmentDestination $address,
+        private readonly Driver              $driver,
+        private readonly float               $score
     ) {
     }
 
     /**
-     * @return Address
+     * @return ShipmentDestination
      */
-    public function getAddress(): Address
+    public function getAddress(): ShipmentDestination
     {
         return $this->address;
     }
