@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\ValueObjects;
+namespace Shipment\ShipmentMatcher\Models;
 
 enum ScoringMethodEnum
 {

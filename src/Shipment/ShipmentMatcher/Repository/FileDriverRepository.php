@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Repository;
 
-use Shipment\ShipmentMatcher\ValueObjects\Driver;
+use Shipment\ShipmentMatcher\Models\Driver;
 
 class FileDriverRepository extends AbstractFileRepository implements DriverRepositoryInterface
 {

@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Repository;
 
-use Shipment\ShipmentMatcher\ValueObjects\ShipmentDestination;
+use Shipment\ShipmentMatcher\Models\ShipmentDestination;
 
 class FileShipmentDestinationRepository extends AbstractFileRepository implements ShipmentDestinationRepositoryInterface
 {

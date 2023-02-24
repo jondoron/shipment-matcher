@@ -1,6 +1,9 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\ValueObjects;
+namespace Shipment\ShipmentMatcher\Matcher;
+
+use Shipment\ShipmentMatcher\Models\Driver;
+use Shipment\ShipmentMatcher\Models\ShipmentDestination;
 
 class ShipmentMatcherResult
 {

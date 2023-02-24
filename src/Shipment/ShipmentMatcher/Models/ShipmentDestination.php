@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\ValueObjects;
+namespace Shipment\ShipmentMatcher\Models;
 
 use Util\MathUtil;
 
@@ -11,9 +11,9 @@ class ShipmentDestination
      */
     private array $factors;
 
-    public function __construct(private readonly int $id, private readonly string $address)
+    public function __construct(private readonly int $id, private readonly string $streetName)
     {
-        $this->factors = MathUtil::calculateFactors(strlen($this->address));
+        $this->factors = MathUtil::calculateFactors(strlen($this->streetName));
     }
 
     /**
@@ -26,7 +26,7 @@ class ShipmentDestination
 
     public function __toString(): string
     {
-        return $this->address;
+        return $this->streetName;
     }
 
     /**

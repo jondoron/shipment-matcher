@@ -3,9 +3,13 @@
 namespace Shipment\ShipmentMatcher\CLI;
 
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcher;
+use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScoreShipmentMatcherStrategy;
 use Shipment\ShipmentMatcher\Repository\FileDriverRepository;
 use Shipment\ShipmentMatcher\Repository\FileShipmentDestinationRepository;
+use Shipment\ShipmentMatcher\Repository\RepositoryRegistry;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,22 +41,27 @@ class ShipmentMatcherCommand extends Command
         $shipmentDestinationRepository = new FileShipmentDestinationRepository($input->getArgument('shipment-destinations-file'));
         $driverRepository = new FileDriverRepository($input->getArgument('drivers-file'));
 
-        $shipmentMatcher = new ShipmentMatcher(
-            $driverRepository->getDrivers(), $shipmentDestinationRepository->getShipmentDestinations()
+        $suitabilityScoreStrategy = new SuitabilityScoreShipmentMatcherStrategy(
+            new RepositoryRegistry($driverRepository, $shipmentDestinationRepository)
+        );
+        $shipmentMatcher = new ShipmentMatcher($suitabilityScoreStrategy);
+
+        $results = $shipmentMatcher->getMatches();
+
+        $table = new Table($output);
+        $table
+            ->setHeaders(['Driver', 'Shipment Destination', 'Suitability Score'])
+            ->setRows(array_map(static function(ShipmentMatcherResult $result) {
+                return [$result->getDriver(), $result->getAddress(), $result->getScore()];
+            }, $results))
+        ;
+        $table->setVertical();
+        $table->render();
+
+        $output->writeln(
+            sprintf('<info>Total suitability score: %s</info>', number_format($shipmentMatcher->getTotalScore(), 2))
         );
 
-        $results = $shipmentMatcher->matchDriversToAddresses();
-        $totalScore = 0;
-        foreach ($results as $result) {
-            $totalScore += $result->getScore();
-            $output->writeln(sprintf(
-                'Driver: %s | ShipmentDestination: %s | Score: %s',
-                $result->getDriver(),
-                $result->getAddress(),
-                number_format($result->getScore(), 2)
-            ));
-        }
-        $output->writeln(sprintf('Total suitability score: %s', number_format($totalScore, 2)));
         return Command::SUCCESS;
     }
 }
