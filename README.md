@@ -18,6 +18,8 @@ to introduce the abstractions that would allow us to swap out matching strategie
 we want interchangeably.
   - I know that the data required to generate the matches wasn't always going to come from a file, so I wanted to make sure
 to introduce the right abstractions in case we eventually want to load them from a database, cloud storage, etc.
+    - The matching strategy accepts the [RepositoryRegistryInterface](src/Shipment/ShipmentMatcher/Repository/RepositoryRegistryInterface.php)
+and is agnostic to the mechanism used to load the Drivers and ShipmentDestinations
   - It also occurred to me that in some implementations, the entirety of the "matching process" might not even occur in the same process
     - Perhaps our implementation can be parallelized and run on several workers or serverless functions
   - With this in mind, I decided to break the matching portion into 2 steps
