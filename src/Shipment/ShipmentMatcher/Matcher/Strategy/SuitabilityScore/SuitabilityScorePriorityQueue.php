@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Matcher\Strategy;
+namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
 use SplPriorityQueue;
 

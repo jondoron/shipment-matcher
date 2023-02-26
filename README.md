@@ -8,7 +8,7 @@
           for international addresses.
 
 ### Implementation
-- Notes detailing the algorihtm used to solve the problem can be found [here](src/Shipment/ShipmentMatcher/Matcher/Strategy/README.md)
+- Notes detailing the algorithm used to solve the problem can be found [here](src/Shipment/ShipmentMatcher/Matcher/Strategy/SuitabilityScore/README.md)
 
 ### Design Decisions
 - I had 3 main goals in the overall design of the project:

@@ -4,7 +4,7 @@ namespace Shipment\ShipmentMatcher\CLI;
 
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcher;
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
-use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScoreShipmentMatcherStrategy;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\SuitabilityScoreShipmentMatcherStrategy;
 use Shipment\ShipmentMatcher\Repository\FileDriverRepository;
 use Shipment\ShipmentMatcher\Repository\FileShipmentDestinationRepository;
 use Shipment\ShipmentMatcher\Repository\RepositoryRegistry;
@@ -58,9 +58,7 @@ class ShipmentMatcherCommand extends Command
         $table->setVertical();
         $table->render();
 
-        $output->writeln(
-            sprintf('<info>Total suitability score: %s</info>', number_format($shipmentMatcher->getTotalScore(), 2))
-        );
+        $output->writeln($shipmentMatcher->getSummary());
 
         return Command::SUCCESS;
     }

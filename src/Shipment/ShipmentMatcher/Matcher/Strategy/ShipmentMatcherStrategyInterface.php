@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Matcher\Strategy;
 
-use Shipment\ShipmentMatcher\Matcher\ShipmentMatcher;
+use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 
 interface ShipmentMatcherStrategyInterface
 {
@@ -11,9 +11,9 @@ interface ShipmentMatcherStrategyInterface
     public function generateMatches(): void;
 
     /**
-     * @return ShipmentMatcher[]
+     * @return ShipmentMatcherResult[]
      */
     public function getResults(): array;
 
-    public function getResultScore(): float;
+    public function getSummary(): string;
 }

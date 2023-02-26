@@ -1,8 +1,9 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Matcher\Strategy;
+namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
+use Shipment\ShipmentMatcher\Matcher\Strategy\ShipmentMatcherStrategyInterface;
 use Shipment\ShipmentMatcher\Models\DriverSuitabilityScore;
 use Shipment\ShipmentMatcher\Models\ScoringMethodEnum;
 use Shipment\ShipmentMatcher\Repository\RepositoryRegistryInterface;
@@ -145,11 +146,6 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
         return $this->matchResults;
     }
 
-    public function getResultScore(): float
-    {
-        return $this->totalScore;
-    }
-
     private function createPriorityQueue(): SuitabilityScorePriorityQueue
     {
         // enter each driver into the priority queue by EACH of their scores, and the scoring strategy used
@@ -166,4 +162,11 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
         return $priorityQueue;
     }
 
+    public function getSummary(): string
+    {
+        return sprintf(
+            "Total suitability score: %s",
+            number_format($this->totalScore, 2)
+        );
+    }
 }

@@ -16,8 +16,8 @@ class ShipmentMatcher
         return $this->shipmentMatcherStrategy->getResults();
     }
 
-    public function getTotalScore(): float
+    public function getSummary(): string
     {
-        return $this->shipmentMatcherStrategy->getResultScore();
+        return $this->shipmentMatcherStrategy->getSummary();
     }
 }
