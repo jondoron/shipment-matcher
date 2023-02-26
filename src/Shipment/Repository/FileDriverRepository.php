@@ -1,8 +1,8 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Repository;
+namespace Shipment\Repository;
 
-use Shipment\ShipmentMatcher\Entities\Driver;
+use Shipment\Entities\Driver;
 
 class FileDriverRepository extends AbstractFileRepository implements DriverRepositoryInterface
 {

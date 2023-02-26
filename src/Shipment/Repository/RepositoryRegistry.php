@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Repository;
+namespace Shipment\Repository;
 
 class RepositoryRegistry implements RepositoryRegistryInterface
 {
@@ -15,7 +15,7 @@ class RepositoryRegistry implements RepositoryRegistryInterface
         return $this->driverRepository;
     }
 
-    public function getShipmentDestinationRegistry(): ShipmentDestinationRepositoryInterface
+    public function getShipmentDestinationRepository(): ShipmentDestinationRepositoryInterface
     {
         return $this->shipmentDestinationRepository;
     }

@@ -17,7 +17,7 @@ class ShipmentMatcherResult
     /**
      * @return ShipmentDestination
      */
-    public function getAddress(): ShipmentDestination
+    public function getShipmentDestination(): ShipmentDestination
     {
         return $this->address;
     }

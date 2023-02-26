@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Entities;
+namespace Shipment\Entities;
 
 use Webmozart\Assert\Assert;
 

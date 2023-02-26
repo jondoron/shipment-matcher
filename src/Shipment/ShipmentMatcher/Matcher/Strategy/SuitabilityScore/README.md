@@ -11,7 +11,7 @@
     - By using the suitability score as the priority value, we can iterate through the possible scores in decreasing order, ensuring
       that we lock in the highest scores possible.
     - By keeping track of which drivers have been assigned, we can immediately proceed to the next item in the queue if that driver is no longer valid
-    - By organizing the shipment destination data a bit we can also cut down the lookup time for valid addresses
+    - By pre-organizing the shipment destination data a bit we can also cut down the lookup time for valid addresses
 
 ## Downsides to this approach
 

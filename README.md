@@ -57,6 +57,15 @@ docker run -it --rm \
 2. To run using the sample shipment destination and driver files provided:
 ```
 docker run -it --rm \
--v "$PWD":/app -w /app \
-composer:2.5 shipment-matcher shipment_destinations.txt drivers.txt
+  -v "$PWD":/app -w /app \
+  composer:2.5 shipment-matcher shipment_destinations.txt drivers.txt
+```
+
+3. To run the unit test suite:
+   - I understand this falls well short of complete test coverage, mostly just want to
+show it's a practice I'm comfortable with.
+```
+docker run -it --rm \
+  -v "$PWD":/app -w /app \
+  composer:2.5 unit-test-suite
 ```

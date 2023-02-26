@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models;
 
-use Shipment\ShipmentMatcher\Entities\Driver as DriverEntity;
+use Shipment\Entities\Driver as DriverEntity;
 use Util\MathUtil;
 use Util\StringUtil;
 

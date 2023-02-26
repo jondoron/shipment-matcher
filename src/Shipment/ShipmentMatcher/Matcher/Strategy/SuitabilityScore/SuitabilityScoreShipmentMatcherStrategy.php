@@ -2,17 +2,15 @@
 
 namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
+use Shipment\Entities\Driver as EntityDriver;
+use Shipment\Entities\ShipmentDestination as EntityShipmentDestination;
+use Shipment\Repository\RepositoryRegistryInterface;
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\Matcher\Strategy\ShipmentMatcherStrategyInterface;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\Driver;
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\DriverSuitabilityScore;
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ScoringMethodEnum;
-use Shipment\ShipmentMatcher\Repository\RepositoryRegistryInterface;
-use Shipment\ShipmentMatcher\Entities\Driver as EntityDriver;
-use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\Driver;
-use Shipment\ShipmentMatcher\Entities\ShipmentDestination as EntityShipmentDestination;
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ShipmentDestination;
-
-use Util\MathUtil;
 use Webmozart\Assert\Assert;
 
 class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategyInterface
@@ -37,7 +35,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
     {
     }
 
-    public function loadData()
+    private function loadData()
     {
         $this->drivers = array_map(
             static function (EntityDriver $driver) {
@@ -52,7 +50,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
                 return new ShipmentDestination($shipmentDestination);
             },
             $this->repositoryRegistry
-            ->getShipmentDestinationRegistry()
+            ->getShipmentDestinationRepository()
             ->getShipmentDestinations()
         );
         Assert::eq(count($this->drivers), count($this->shipmentDestinations), 'The number of drivers must equal the number of shipment destinations');

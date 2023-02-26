@@ -5,6 +5,8 @@ namespace Util;
 class MathUtil
 {
     /**
+     * Calculates the factors for a number, not including 1
+     *
      * @return int[]
      */
     public static function calculateFactors(int $number): array

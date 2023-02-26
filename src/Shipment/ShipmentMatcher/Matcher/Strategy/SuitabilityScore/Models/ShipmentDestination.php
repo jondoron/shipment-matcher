@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models;
 
-use Shipment\ShipmentMatcher\Entities\ShipmentDestination as ShipmentDestinationEntity;
+use Shipment\Entities\ShipmentDestination as ShipmentDestinationEntity;
 use Util\MathUtil;
 
 class ShipmentDestination

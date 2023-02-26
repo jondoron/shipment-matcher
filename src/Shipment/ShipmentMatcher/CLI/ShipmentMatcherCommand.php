@@ -2,12 +2,12 @@
 
 namespace Shipment\ShipmentMatcher\CLI;
 
+use Shipment\Repository\FileDriverRepository;
+use Shipment\Repository\FileShipmentDestinationRepository;
+use Shipment\Repository\RepositoryRegistry;
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcher;
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\SuitabilityScoreShipmentMatcherStrategy;
-use Shipment\ShipmentMatcher\Repository\FileDriverRepository;
-use Shipment\ShipmentMatcher\Repository\FileShipmentDestinationRepository;
-use Shipment\ShipmentMatcher\Repository\RepositoryRegistry;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -53,7 +53,7 @@ class ShipmentMatcherCommand extends Command
         $table
             ->setHeaders(['Driver', 'Shipment Destination', 'Suitability Score'])
             ->setRows(array_map(static function (ShipmentMatcherResult $result) {
-                return [$result->getDriver(), $result->getAddress(), $result->getScore()];
+                return [$result->getDriver(), $result->getShipmentDestination(), $result->getScore()];
             }, $results))
         ;
         $table->setVertical();

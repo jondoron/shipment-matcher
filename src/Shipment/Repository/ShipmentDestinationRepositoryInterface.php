@@ -1,8 +1,8 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Repository;
+namespace Shipment\Repository;
 
-use Shipment\ShipmentMatcher\Entities\ShipmentDestination;
+use Shipment\Entities\ShipmentDestination;
 
 interface ShipmentDestinationRepositoryInterface
 {
