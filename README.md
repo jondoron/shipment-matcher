@@ -45,9 +45,13 @@ docker run --rm --interactive --tty \
   -v $PWD:/app \
   composer:2.5 install
 ```
+3. Data files
+   - The file containing the driver data should be a newline separated list of driver names
+   - The file containing the shipment destination data should be a newline separated list of **street names**
+   - Each of the 2 data files should contain the same amount of records
 
 ### How to run:
-1. Note: we're going to run the application using the Composer docker image as it comes bundles with php 8.2
+1. Note: we're going to run the application using the Composer docker image as it comes bundled with php 8.2
 and it allows us to use a slightly more friendly syntax to run scripts (similiar to using `npm run`)
 ```
 docker run -it --rm \
