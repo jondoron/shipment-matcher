@@ -4,7 +4,11 @@ namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\Matcher\Strategy\ShipmentMatcherStrategyInterface;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\DriverSuitabilityScore;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ScoringMethodEnum;
 use Shipment\ShipmentMatcher\Repository\RepositoryRegistryInterface;
+use Shipment\ShipmentMatcher\Entities\Driver as EntityDriver;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\Driver;
 use Util\MathUtil;
 use Webmozart\Assert\Assert;
 
@@ -23,11 +27,13 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
 
     public function loadData()
     {
-        $this->drivers = $this
-            ->repositoryRegistry
+        $this->drivers = array_map(
+            static function (EntityDriver $driver) {
+                return new Driver($driver);
+            }, $this->repositoryRegistry
             ->getDriverRepository()
             ->getDrivers()
-        ;
+        );
         $this->shipmentDestinations = $this
             ->repositoryRegistry
             ->getShipmentDestinationRegistry()
