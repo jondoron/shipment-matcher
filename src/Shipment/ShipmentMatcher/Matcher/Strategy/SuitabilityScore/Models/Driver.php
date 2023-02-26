@@ -45,6 +45,7 @@ class Driver
     {
         return (string) $this->inner;
     }
+
     /**
      * @return DriverSuitabilityScore[]
      */

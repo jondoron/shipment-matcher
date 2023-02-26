@@ -3,7 +3,7 @@
 namespace Shipment\ShipmentMatcher\Matcher;
 
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\Driver;
-use Shipment\ShipmentMatcher\Entities\ShipmentDestination;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ShipmentDestination;
 
 class ShipmentMatcherResult
 {

@@ -9,12 +9,23 @@ use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ScoringMet
 use Shipment\ShipmentMatcher\Repository\RepositoryRegistryInterface;
 use Shipment\ShipmentMatcher\Entities\Driver as EntityDriver;
 use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\Driver;
+use Shipment\ShipmentMatcher\Entities\ShipmentDestination as EntityShipmentDestination;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ShipmentDestination;
+
 use Util\MathUtil;
 use Webmozart\Assert\Assert;
 
+
 class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategyInterface
 {
+    /**
+     * @var Driver[]
+     */
     private array $drivers;
+
+    /**
+     * @var ShipmentDestination[]
+     */
     private array $shipmentDestinations;
 
     /**
@@ -34,11 +45,13 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
             ->getDriverRepository()
             ->getDrivers()
         );
-        $this->shipmentDestinations = $this
-            ->repositoryRegistry
+        $this->shipmentDestinations = array_map(
+            static function (EntityShipmentDestination $shipmentDestination) {
+                return new ShipmentDestination($shipmentDestination);
+            }, $this->repositoryRegistry
             ->getShipmentDestinationRegistry()
             ->getShipmentDestinations()
-        ;
+        );
         Assert::eq(count($this->drivers), count($this->shipmentDestinations), 'The number of drivers must equal the number of shipment destinations');
         Assert::notEmpty($this->drivers, 'The number of drivers and shipment destinations must be greater than 0');
     }

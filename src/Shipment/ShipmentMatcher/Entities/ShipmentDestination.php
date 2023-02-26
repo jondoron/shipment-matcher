@@ -6,15 +6,9 @@ use Util\MathUtil;
 
 class ShipmentDestination
 {
-    /**
-     * @var int[]
-     */
-    private array $factors;
 
-    public function __construct(private readonly int $id, private readonly string $streetName)
-    {
-        $this->factors = MathUtil::calculateFactors(strlen($this->streetName));
-    }
+
+    public function __construct(private readonly int $id, private readonly string $streetName) {}
 
     /**
      * @return int
@@ -27,18 +21,5 @@ class ShipmentDestination
     public function __toString(): string
     {
         return $this->streetName;
-    }
-
-    /**
-     * @return int[]
-     */
-    public function getFactors(): array
-    {
-        return $this->factors;
-    }
-
-    public function isEven(): bool
-    {
-        return MathUtil::isEven(strlen($this));
     }
 }
