@@ -6,8 +6,6 @@ use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 
 interface ShipmentMatcherStrategyInterface
 {
-    public function loadData();
-
     public function generateMatches(): void;
 
     /**

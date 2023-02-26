@@ -2,10 +2,13 @@
 
 namespace Shipment\ShipmentMatcher\Entities;
 
+use Webmozart\Assert\Assert;
+
 class ShipmentDestination
 {
     public function __construct(private readonly int $id, private readonly string $streetName)
     {
+        Assert::notWhitespaceOnly($this->streetName);
     }
 
     /**

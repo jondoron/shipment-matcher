@@ -1,6 +1,6 @@
 {
   "name": "jondoron/shipment-matcher",
-  "description": "Project that optimizes the assignment shipments to drivers based off of a suitability score",
+  "description": "Project that creates assignments of drivers to shipment destinations based off of a calculated suitability score",
   "type": "project",
   "license": "MIT",
   "authors": [

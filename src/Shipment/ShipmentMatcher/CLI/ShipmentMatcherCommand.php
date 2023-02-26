@@ -45,8 +45,9 @@ class ShipmentMatcherCommand extends Command
             new RepositoryRegistry($driverRepository, $shipmentDestinationRepository)
         );
         $shipmentMatcher = new ShipmentMatcher($suitabilityScoreStrategy);
+        $shipmentMatcher->generateMatches();
 
-        $results = $shipmentMatcher->getMatches();
+        $results = $shipmentMatcher->getResults();
 
         $table = new Table($output);
         $table

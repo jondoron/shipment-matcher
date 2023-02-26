@@ -64,6 +64,8 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
      */
     public function generateMatches(): void
     {
+        $this->loadData();
+
         // organize shipment destinatinos for quick lookup by factor
         $shipmentDestinationsIndexedByFactor = [];
         // organize shipment destinations by even and odd

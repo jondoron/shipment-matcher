@@ -8,19 +8,19 @@ class FileShipmentDestinationRepository extends AbstractFileRepository implement
 {
     public function getShipmentDestinations(): array
     {
-        /** @var ShipmentDestination[] $addresses */
-        $addresses = [];
+        /** @var ShipmentDestination[] $shipmentDestinations */
+        $shipmentDestinations = [];
         $fn = fopen($this->filePath, "r");
 
         while (! feof($fn)) {
-            $addressLine = trim(fgets($fn));
-            if (0 === strlen($addressLine)) {
+            $streetName = trim(fgets($fn));
+            if (0 === strlen($streetName)) {
                 continue;
             }
-            $addresses[] = new ShipmentDestination(count($addresses), $addressLine);
+            $shipmentDestinations[] = new ShipmentDestination(count($shipmentDestinations), $streetName);
         }
         fclose($fn);
 
-        return $addresses;
+        return $shipmentDestinations;
     }
 }

@@ -10,10 +10,13 @@ class ShipmentMatcher
     {
     }
 
-    public function getMatches(): array
+    public function generateMatches(): void
     {
-        $this->shipmentMatcherStrategy->loadData();
         $this->shipmentMatcherStrategy->generateMatches();
+    }
+
+    public function getResults(): array
+    {
         return $this->shipmentMatcherStrategy->getResults();
     }
 
