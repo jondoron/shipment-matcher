@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Models;
+namespace Shipment\ShipmentMatcher\Entities;
 
 use Util\MathUtil;
 

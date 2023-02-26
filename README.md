@@ -30,5 +30,5 @@ and is agnostic to the mechanism used to load the Drivers and ShipmentDestinatio
 ### Curiosity
 - Since these excercises tend to take some time, I always try to bake some exploration into them and get hands-on with new things
 - In this project, I decided to explore some of the newer PHP 8+ features.
-  - [Enums in PHP](src/Shipment/ShipmentMatcher/Models/ScoringMethodEnum.php)
+  - [Enums in PHP](src/Shipment/ShipmentMatcher/Entities/ScoringMethodEnum.php)
   - [Constructor Promotion](src/Shipment/ShipmentMatcher/Matcher/ShipmentMatcher.php)

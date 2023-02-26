@@ -2,7 +2,7 @@
 
 namespace Shipment\ShipmentMatcher\Repository;
 
-use Shipment\ShipmentMatcher\Models\Driver;
+use Shipment\ShipmentMatcher\Entities\Driver;
 
 interface DriverRepositoryInterface
 {

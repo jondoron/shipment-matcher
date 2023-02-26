@@ -1,6 +1,6 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Models;
+namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
 enum ScoringMethodEnum
 {

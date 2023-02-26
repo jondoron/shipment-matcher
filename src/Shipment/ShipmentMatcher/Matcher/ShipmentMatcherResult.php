@@ -2,8 +2,8 @@
 
 namespace Shipment\ShipmentMatcher\Matcher;
 
-use Shipment\ShipmentMatcher\Models\Driver;
-use Shipment\ShipmentMatcher\Models\ShipmentDestination;
+use Shipment\ShipmentMatcher\Entities\Driver;
+use Shipment\ShipmentMatcher\Entities\ShipmentDestination;
 
 class ShipmentMatcherResult
 {

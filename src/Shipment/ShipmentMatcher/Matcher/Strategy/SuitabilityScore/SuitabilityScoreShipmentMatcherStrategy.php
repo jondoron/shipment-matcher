@@ -4,8 +4,6 @@ namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
 
 use Shipment\ShipmentMatcher\Matcher\ShipmentMatcherResult;
 use Shipment\ShipmentMatcher\Matcher\Strategy\ShipmentMatcherStrategyInterface;
-use Shipment\ShipmentMatcher\Models\DriverSuitabilityScore;
-use Shipment\ShipmentMatcher\Models\ScoringMethodEnum;
 use Shipment\ShipmentMatcher\Repository\RepositoryRegistryInterface;
 use Util\MathUtil;
 use Webmozart\Assert\Assert;

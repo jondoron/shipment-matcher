@@ -1,7 +1,9 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Models;
+namespace Shipment\ShipmentMatcher\Entities;
 
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\DriverSuitabilityScore;
+use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\ScoringMethodEnum;
 use Util\MathUtil;
 use Util\StringUtil;
 use Webmozart\Assert\Assert;

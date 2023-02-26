@@ -1,6 +1,8 @@
 <?php
 
-namespace Shipment\ShipmentMatcher\Models;
+namespace Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore;
+
+use Shipment\ShipmentMatcher\Entities\Driver;
 
 class DriverSuitabilityScore
 {
