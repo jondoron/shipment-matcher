@@ -35,7 +35,7 @@ class ShipmentDestination
         return $this->factors;
     }
 
-    public function isEven(): bool
+    public function isEvenLength(): bool
     {
         return MathUtil::isEven(strlen($this));
     }

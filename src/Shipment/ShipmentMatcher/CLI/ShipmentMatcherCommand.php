@@ -51,7 +51,7 @@ class ShipmentMatcherCommand extends Command
         $table = new Table($output);
         $table
             ->setHeaders(['Driver', 'Shipment Destination', 'Suitability Score'])
-            ->setRows(array_map(static function(ShipmentMatcherResult $result) {
+            ->setRows(array_map(static function (ShipmentMatcherResult $result) {
                 return [$result->getDriver(), $result->getAddress(), $result->getScore()];
             }, $results))
         ;

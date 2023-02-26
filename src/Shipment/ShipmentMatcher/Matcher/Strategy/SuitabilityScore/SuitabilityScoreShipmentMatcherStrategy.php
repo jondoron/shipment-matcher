@@ -15,7 +15,6 @@ use Shipment\ShipmentMatcher\Matcher\Strategy\SuitabilityScore\Models\ShipmentDe
 use Util\MathUtil;
 use Webmozart\Assert\Assert;
 
-
 class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategyInterface
 {
     /**
@@ -34,21 +33,25 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
     private array $matchResults = [];
     private float $totalScore = 0;
 
-    public function __construct(private readonly RepositoryRegistryInterface $repositoryRegistry) {}
+    public function __construct(private readonly RepositoryRegistryInterface $repositoryRegistry)
+    {
+    }
 
     public function loadData()
     {
         $this->drivers = array_map(
             static function (EntityDriver $driver) {
                 return new Driver($driver);
-            }, $this->repositoryRegistry
+            },
+            $this->repositoryRegistry
             ->getDriverRepository()
             ->getDrivers()
         );
         $this->shipmentDestinations = array_map(
             static function (EntityShipmentDestination $shipmentDestination) {
                 return new ShipmentDestination($shipmentDestination);
-            }, $this->repositoryRegistry
+            },
+            $this->repositoryRegistry
             ->getShipmentDestinationRegistry()
             ->getShipmentDestinations()
         );
@@ -57,13 +60,13 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
     }
 
     /**
-     * Brace yourselves
+     * See the README.md file in this directory for implementation notes
      */
     public function generateMatches(): void
     {
-        // organize addresses for quick lookup by factor
+        // organize shipment destinatinos for quick lookup by factor
         $shipmentDestinationsIndexedByFactor = [];
-        // organize address by even and odd
+        // organize shipment destinations by even and odd
         $evenShipmentDestinations = [];
         $oddShipmentDestinations = [];
 
@@ -74,14 +77,14 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
                 }
                 $shipmentDestinationsIndexedByFactor[$factor][$shipmentDestination->getId()] = $shipmentDestination;
             }
-            if (MathUtil::isEven(strlen($shipmentDestination))) {
+            if ($shipmentDestination->isEvenLength()) {
                 $evenShipmentDestinations[$shipmentDestination->getId()] = $shipmentDestination;
                 continue;
             }
             $oddShipmentDestinations[$shipmentDestination->getId()] = $shipmentDestination;
         }
 
-        // keep trakc of drivers and shipment destinaitons that have been matched
+        // keep track of drivers and shipment destinations that have been matched
         $matchedDrivers = [];
         $matchedShipmentDestinations = [];
 
@@ -100,7 +103,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
 
             // based off of the scoring method, find the address
             $scoringMethod = $currentSuitabilityScore->getScoringMethod();
-            // if the scoring method includes a factor in it's computation, lets search through our pre-indexed array to find an appropriate match
+            // if the scoring method includes a factor in its computation, we search through our pre-indexed array to find an appropriate match
             $matchedShipmentDestination = null;
             if (ScoringMethodEnum::EVEN_WITH_FACTOR === $scoringMethod || ScoringMethodEnum::ODD_WITH_FACTOR === $scoringMethod) {
                 $driverFactors = $currentSuitabilityScore->getDriver()->getFactors();
@@ -115,10 +118,10 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
                         if (key_exists($shipmentDestination->getId(), $matchedShipmentDestinations)) {
                             continue;
                         }
-                        if (ScoringMethodEnum::EVEN_WITH_FACTOR === $scoringMethod && !MathUtil::isEven(strlen($shipmentDestination))) {
+                        if (ScoringMethodEnum::EVEN_WITH_FACTOR === $scoringMethod && !$shipmentDestination->isEvenLength()) {
                             continue;
                         }
-                        if (ScoringMethodEnum::ODD_WITH_FACTOR === $scoringMethod && MathUtil::isEven(strlen($shipmentDestination))) {
+                        if (ScoringMethodEnum::ODD_WITH_FACTOR === $scoringMethod && $shipmentDestination->isEvenLength()) {
                             continue;
                         }
                         $matchedShipmentDestination = $shipmentDestination;
@@ -126,6 +129,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
                 }
             }
 
+            // if the scoring method is just EVEN, search through our pre-filtered evens array
             if (ScoringMethodEnum::EVEN === $scoringMethod) {
                 foreach ($evenShipmentDestinations as $shipmentDestination) {
                     if (key_exists($shipmentDestination->getId(), $matchedShipmentDestinations)) {
@@ -135,6 +139,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
                 }
             }
 
+            // if the scoring method is just EVEN, search through our pre-filtered evens array
             if (ScoringMethodEnum::ODD === $scoringMethod) {
                 foreach ($oddShipmentDestinations as $shipmentDestination) {
                     if (key_exists($shipmentDestination->getId(), $matchedShipmentDestinations)) {
@@ -147,6 +152,7 @@ class SuitabilityScoreShipmentMatcherStrategy implements ShipmentMatcherStrategy
             if (null === $matchedShipmentDestination) {
                 continue;
             }
+
             $this->totalScore += $currentSuitabilityScore->getScore();
             $driver = $currentSuitabilityScore->getDriver();
             $this->matchResults[] = new ShipmentMatcherResult($matchedShipmentDestination, $driver, $currentSuitabilityScore->getScore());

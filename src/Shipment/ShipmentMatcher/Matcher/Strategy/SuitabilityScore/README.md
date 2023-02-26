@@ -16,6 +16,5 @@
 - I don't believe this algorithm guarantees the highest possible total suitability score, though it should consistently perform
   very well in the regard.
 
-## Other approaches I considered
 
     

@@ -2,13 +2,11 @@
 
 namespace Shipment\ShipmentMatcher\Entities;
 
-use Util\MathUtil;
-
 class ShipmentDestination
 {
-
-
-    public function __construct(private readonly int $id, private readonly string $streetName) {}
+    public function __construct(private readonly int $id, private readonly string $streetName)
+    {
+    }
 
     /**
      * @return int

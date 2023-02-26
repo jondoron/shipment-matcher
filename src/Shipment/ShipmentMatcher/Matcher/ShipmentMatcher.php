@@ -6,8 +6,9 @@ use Shipment\ShipmentMatcher\Matcher\Strategy\ShipmentMatcherStrategyInterface;
 
 class ShipmentMatcher
 {
-
-    public function __construct(private readonly ShipmentMatcherStrategyInterface $shipmentMatcherStrategy) {}
+    public function __construct(private readonly ShipmentMatcherStrategyInterface $shipmentMatcherStrategy)
+    {
+    }
 
     public function getMatches(): array
     {
